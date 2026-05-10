@@ -124,6 +124,12 @@ export function Hero() {
           {!shouldReduce && shaderReady ? <HeroShader /> : null}
         </div>
         <div className="absolute inset-0 bg-[linear-gradient(180deg,rgb(var(--color-page)/0.35),rgb(var(--color-page)/0.95))]" />
+        <div
+          aria-hidden="true"
+          className="absolute -right-[0.08em] bottom-[-0.2em] font-display text-[34vw] leading-none text-ink/[0.025]"
+        >
+          ECHO
+        </div>
         <div className="absolute left-gutter top-6 z-10 mono-meta text-muted">
           ECHO / EST. 2024 / CAIRO
         </div>
@@ -136,12 +142,15 @@ export function Hero() {
           </AnimatePresence>
         </h1>
         <motion.div
-          className="absolute bottom-8 left-gutter z-10 max-w-72 font-mono text-[0.68rem] uppercase leading-relaxed tracking-[0.08em] text-muted"
+          className="absolute bottom-8 left-gutter z-10 grid max-w-xl gap-4 font-mono text-[0.68rem] uppercase leading-relaxed tracking-[0.08em] text-muted md:grid-cols-[1fr_1fr]"
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ duration: 0.9, ease: easings.enter, delay: 1.1 }}
         >
-          AI-native cinema, authored frame by frame.
+          <span>AI-native cinema, authored frame by frame.</span>
+          <span className="hidden border-l border-line/10 pl-5 md:block">
+            2.39:1 / Volumetric negative space / silent loop
+          </span>
         </motion.div>
       </div>
     </section>

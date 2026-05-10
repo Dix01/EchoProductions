@@ -149,6 +149,10 @@ svg {
   .view-transition-ready {
     view-transition-name: echo-surface;
   }
+
+  .opacity-78 {
+    opacity: 0.78;
+  }
 }
 
 @media (min-width: 768px) {

@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useRef } from "react";
+import { useReducedMotion } from "framer-motion";
 
 type LazyVideoProps = {
   webm?: string;
@@ -20,6 +21,8 @@ export function LazyVideo({
   label
 }: LazyVideoProps) {
   const ref = useRef<HTMLVideoElement>(null);
+  const shouldReduce = useReducedMotion();
+  const canPlay = active && !shouldReduce;
 
   useEffect(() => {
     const video = ref.current;
@@ -29,7 +32,7 @@ export function LazyVideo({
 
     const observer = new IntersectionObserver(
       ([entry]) => {
-        if (entry.isIntersecting && active) {
+        if (entry.isIntersecting && canPlay) {
           video.preload = "auto";
           void video.play().catch(() => undefined);
           return;
@@ -45,7 +48,7 @@ export function LazyVideo({
     observer.observe(video);
 
     return () => observer.disconnect();
-  }, [active, mp4, webm]);
+  }, [canPlay, mp4, webm]);
 
   useEffect(() => {
     const video = ref.current;
@@ -53,14 +56,14 @@ export function LazyVideo({
       return;
     }
 
-    if (active) {
+    if (canPlay) {
       video.preload = "auto";
       void video.play().catch(() => undefined);
       return;
     }
 
     video.pause();
-  }, [active, mp4, webm]);
+  }, [canPlay, mp4, webm]);
 
   if (!webm && !mp4) {
     return null;
