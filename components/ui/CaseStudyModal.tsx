@@ -6,6 +6,7 @@ import { X } from "lucide-react";
 import { motion } from "framer-motion";
 import { easings } from "@/lib/animations/easing";
 import type { Project } from "@/lib/data/projects";
+import { LazyVideo } from "./LazyVideo";
 
 export function CaseStudyModal({ project }: { project: Project }) {
   const router = useRouter();
@@ -73,7 +74,16 @@ export function CaseStudyModal({ project }: { project: Project }) {
         <div
           className="asset-plate mt-16 aspect-[16/9] w-full border border-line/10"
           style={{ background: project.plate }}
-        />
+        >
+          <LazyVideo
+            webm={project.video?.webm}
+            mp4={project.video?.mp4}
+            poster={project.video?.poster}
+            label={`${project.title} case study loop`}
+            className="h-full w-full object-cover opacity-75"
+          />
+          <div className="absolute inset-0 bg-[linear-gradient(180deg,transparent,rgb(var(--color-page)/0.38))]" />
+        </div>
       </article>
     </motion.div>
   );

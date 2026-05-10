@@ -21,10 +21,13 @@ export function ContactCTA() {
         onMouseLeave={() => setHovered(false)}
         onFocus={() => setHovered(true)}
         onBlur={() => setHovered(false)}
-        className="group flex min-h-[34vh] items-center justify-between gap-8 border-y border-line/10 py-12"
+        className="group grid min-h-[42vh] gap-8 border-y border-line/10 py-12 md:grid-cols-[1fr_auto] md:items-center"
       >
-        <span className="font-display text-5xl leading-none text-ink md:text-8xl">
-          Begin a conversation.
+        <span>
+          <span className="mb-6 block mono-meta text-gold">FINAL FRAME / OPEN SIGNAL</span>
+          <span className="block font-display text-5xl leading-none text-ink md:text-8xl">
+            Begin a conversation.
+          </span>
         </span>
         <AnimatedArrow active={hovered} />
       </ViewTransitionLink>

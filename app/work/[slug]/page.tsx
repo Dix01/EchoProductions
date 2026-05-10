@@ -1,5 +1,6 @@
 import { notFound } from "next/navigation";
 import { getProject, projects } from "@/lib/data/projects";
+import { LazyVideo } from "@/components/ui/LazyVideo";
 
 export function generateStaticParams() {
   return projects.map((project) => ({ slug: project.slug }));
@@ -49,7 +50,16 @@ export default function WorkPage({ params }: { params: { slug: string } }) {
         <div
           className="asset-plate mt-16 aspect-[16/9] w-full border border-line/10"
           style={{ background: project.plate }}
-        />
+        >
+          <LazyVideo
+            webm={project.video?.webm}
+            mp4={project.video?.mp4}
+            poster={project.video?.poster}
+            label={`${project.title} case study loop`}
+            className="h-full w-full object-cover opacity-75"
+          />
+          <div className="absolute inset-0 bg-[linear-gradient(180deg,transparent,rgb(var(--color-page)/0.38))]" />
+        </div>
       </article>
     </main>
   );
