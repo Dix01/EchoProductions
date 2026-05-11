@@ -84,6 +84,7 @@ type EchoMarkProps = SVGProps<SVGSVGElement> & {
   perfs?: boolean;
   axis?: boolean;
   spiral?: boolean;
+  crisp?: boolean;
   strokeScale?: number;
   title?: string;
 };
@@ -95,6 +96,7 @@ export function EchoMark({
   perfs = true,
   axis = true,
   spiral = true,
+  crisp = false,
   strokeScale = 1,
   title = "ECHO aperture mark",
   ...props
@@ -108,7 +110,7 @@ export function EchoMark({
   return (
     <svg
       viewBox="0 0 400 400"
-      className={className}
+      className={joinClasses(crisp ? "identity-crisp-stroke" : undefined, className)}
       fill="none"
       focusable="false"
       {...a11y}
@@ -205,6 +207,8 @@ type EchoWordmarkProps = SVGProps<SVGSVGElement> & {
   decorative?: boolean;
   title?: string;
   tracking?: number;
+  crisp?: boolean;
+  strokeScale?: number;
 };
 
 export function EchoWordmark({
@@ -212,6 +216,8 @@ export function EchoWordmark({
   decorative = false,
   title = "ECHO",
   tracking = 0.55,
+  crisp = false,
+  strokeScale = 1,
   ...props
 }: EchoWordmarkProps) {
   const h = 100;
@@ -221,7 +227,7 @@ export function EchoWordmark({
   const wO = h;
   const t = h * tracking;
   const totalW = wE + t + wC + t + wH + t + wO;
-  const stroke = 1.8;
+  const stroke = 1.8 * strokeScale;
   let cursor = 0;
   const eX = cursor;
   cursor += wE + t;
@@ -239,7 +245,7 @@ export function EchoWordmark({
       viewBox={`0 0 ${totalW} ${h}`}
       width={totalW}
       height={h}
-      className={className}
+      className={joinClasses(crisp ? "identity-crisp-stroke" : undefined, className)}
       fill="none"
       focusable="false"
       {...a11y}
@@ -279,9 +285,10 @@ export function EchoLockup({
         perfs={!compact}
         axis={false}
         spiral={!compact}
-        strokeScale={compact ? 1.25 : 1}
+        crisp={compact}
+        strokeScale={compact ? 1.55 : 1}
         className={joinClasses(
-          compact ? "h-8 w-8 text-gold" : "h-10 w-10 text-gold/90",
+          compact ? "h-10 w-10 text-gold" : "h-10 w-10 text-gold/90",
           markClassName
         )}
       />
@@ -289,8 +296,10 @@ export function EchoLockup({
         <EchoWordmark
           decorative
           tracking={compact ? 0.72 : 0.62}
+          crisp={compact}
+          strokeScale={compact ? 1.12 : 1}
           className={joinClasses(
-            compact ? "h-3.5 w-auto text-ink" : "h-4 w-auto text-ink",
+            compact ? "h-[1.05rem] w-auto text-ink" : "h-4 w-auto text-ink",
             wordmarkClassName
           )}
         />

@@ -97,6 +97,10 @@ svg {
   display: block;
 }
 
+.identity-crisp-stroke :is(circle, line, path, polygon) {
+  vector-effect: non-scaling-stroke;
+}
+
 .spatial-light {
   mix-blend-mode: screen;
 }
