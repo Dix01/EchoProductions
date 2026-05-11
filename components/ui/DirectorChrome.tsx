@@ -3,6 +3,7 @@
 import { useEffect } from "react";
 import { motion, useMotionValueEvent, useReducedMotion, useScroll, useSpring, useTransform } from "framer-motion";
 import { EchoLockup } from "./EchoIdentity";
+import { ThemeToggle } from "./ThemeToggle";
 
 const navItems = [
   { href: "#work", label: "WORK" },
@@ -52,7 +53,7 @@ export function DirectorChrome() {
         aria-hidden="true"
         className="pointer-events-none fixed inset-0 z-30 hidden md:block"
       >
-        <div className="absolute inset-0 bg-[radial-gradient(460px_circle_at_var(--mouse-x)_var(--mouse-y),rgb(var(--color-gold)/0.08),transparent_68%)] mix-blend-screen" />
+        <div className="spatial-light absolute inset-0 bg-[radial-gradient(460px_circle_at_var(--mouse-x)_var(--mouse-y),rgb(var(--color-gold)/0.08),transparent_68%)]" />
         <div className="absolute left-0 right-0 top-0 h-8 bg-[linear-gradient(180deg,rgb(var(--color-page)/0.88),transparent)]" />
         <div className="absolute bottom-0 left-0 right-0 h-8 bg-[linear-gradient(0deg,rgb(var(--color-page)/0.88),transparent)]" />
       </div>
@@ -75,8 +76,11 @@ export function DirectorChrome() {
             </a>
           ))}
         </div>
-        <div className="mono-meta hidden min-w-[5rem] text-right text-gold sm:block">
-          <motion.span>{frame}</motion.span>
+        <div className="flex items-start gap-3">
+          <ThemeToggle />
+          <div className="mono-meta hidden min-w-[5rem] pt-3 text-right text-gold sm:block">
+            <motion.span>{frame}</motion.span>
+          </div>
         </div>
       </nav>
     </>

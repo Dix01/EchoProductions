@@ -22,6 +22,20 @@ const mono = JetBrains_Mono({
   display: "swap"
 });
 
+const themeScript = `
+(() => {
+  try {
+    const stored = window.localStorage.getItem("echo-theme");
+    const theme = stored === "light" || stored === "dark" ? stored : "dark";
+    document.documentElement.dataset.theme = theme;
+    document.documentElement.style.colorScheme = theme;
+  } catch (_) {
+    document.documentElement.dataset.theme = "dark";
+    document.documentElement.style.colorScheme = "dark";
+  }
+})();
+`;
+
 export const metadata: Metadata = {
   title: {
     default: "ECHO | AI-Native Film Studio",
@@ -41,7 +55,10 @@ export const metadata: Metadata = {
 export const viewport: Viewport = {
   width: "device-width",
   initialScale: 1,
-  themeColor: "#000000"
+  themeColor: [
+    { media: "(prefers-color-scheme: dark)", color: "#000000" },
+    { media: "(prefers-color-scheme: light)", color: "#EDEBE3" }
+  ]
 };
 
 export default function RootLayout({
@@ -57,6 +74,9 @@ export default function RootLayout({
       className={`${display.variable} ${body.variable} ${mono.variable}`}
       suppressHydrationWarning
     >
+      <head>
+        <script dangerouslySetInnerHTML={{ __html: themeScript }} />
+      </head>
       <body>
         <SiteProviders>
           {children}
