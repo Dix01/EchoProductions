@@ -11,7 +11,7 @@ import {
 } from "framer-motion";
 import { useEffect, useRef, useState } from "react";
 import { easings } from "@/lib/animations/easing";
-import { EchoLockup, EchoMark } from "@/components/ui/EchoIdentity";
+import { EchoMark } from "@/components/ui/EchoIdentity";
 import { LazyVideo } from "@/components/ui/LazyVideo";
 
 const HeroShader = dynamic(() => import("./HeroShader"), { ssr: false });
@@ -151,9 +151,6 @@ export function Hero() {
         >
           <EchoMark decorative className="h-full w-full" strokeScale={0.72} />
         </motion.div>
-        <div className="absolute left-gutter top-20 z-10 md:top-24">
-          <EchoLockup compact meta="EST. 2024 / CAIRO" />
-        </div>
         <div className="absolute right-gutter top-20 z-10 hidden mono-meta text-muted sm:block md:top-24">
           {time} / EET
         </div>
