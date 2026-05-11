@@ -2,6 +2,7 @@
 
 import { motion, useReducedMotion } from "framer-motion";
 import { easings } from "@/lib/animations/easing";
+import { EchoMark } from "@/components/ui/EchoIdentity";
 
 const pillars = [
   {
@@ -34,6 +35,11 @@ export function TemporalThesis() {
       className="relative overflow-hidden border-y border-line/10 bg-page px-gutter py-20 md:py-28"
       aria-label="ECHO creative thesis"
     >
+      <EchoMark
+        decorative
+        className="absolute left-[42%] top-1/2 h-[42rem] w-[42rem] -translate-y-1/2 text-ink/[0.028]"
+        strokeScale={0.74}
+      />
       <div className="grid gap-14 lg:grid-cols-[0.92fr_1.08fr] lg:items-end">
         <motion.div
           initial={{ opacity: 0, y: shouldReduce ? 0 : 20 }}

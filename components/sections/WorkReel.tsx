@@ -6,6 +6,7 @@ import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { projects, type Project } from "@/lib/data/projects";
 import { easings } from "@/lib/animations/easing";
+import { EchoMark } from "@/components/ui/EchoIdentity";
 import { useMagneticHover } from "@/lib/hooks/useMagneticHover";
 import { LazyVideo } from "@/components/ui/LazyVideo";
 import { ViewTransitionLink } from "@/components/ui/ViewTransitionLink";
@@ -18,7 +19,7 @@ function ProjectCard({ project, index }: { project: Project; index: number }) {
 
   return (
     <motion.article
-      className="relative h-[78vh] min-w-[86vw] overflow-hidden border-r border-line/10 md:h-screen md:min-w-[72vw] lg:min-w-[58vw]"
+      className="group/card relative h-[78vh] min-w-[86vw] overflow-hidden border-r border-line/10 bg-page md:h-screen md:min-w-[72vw] lg:min-w-[58vw]"
       initial={{ opacity: 0 }}
       whileInView={{ opacity: 1 }}
       viewport={{ once: true, amount: 0.2 }}
@@ -43,6 +44,12 @@ function ProjectCard({ project, index }: { project: Project; index: number }) {
             <span className="h-px w-10 bg-gold/50" />
             <span>SELECTED FRAME</span>
           </div>
+          <div aria-hidden="true" className="absolute inset-y-0 left-0 z-10 w-7 border-r border-line/10 bg-page/18 backdrop-blur-[1px]">
+            <div className="h-full bg-[repeating-linear-gradient(180deg,transparent_0,transparent_20px,rgb(var(--color-ink)/0.28)_20px,rgb(var(--color-ink)/0.28)_25px,transparent_25px,transparent_42px)] opacity-40" />
+          </div>
+          <div aria-hidden="true" className="absolute inset-y-0 right-0 z-10 w-7 border-l border-line/10 bg-page/18 backdrop-blur-[1px]">
+            <div className="h-full bg-[repeating-linear-gradient(180deg,transparent_0,transparent_20px,rgb(var(--color-ink)/0.28)_20px,rgb(var(--color-ink)/0.28)_25px,transparent_25px,transparent_42px)] opacity-40" />
+          </div>
           <motion.div
             className="asset-plate absolute inset-0"
             style={{ background: project.plate }}
@@ -61,6 +68,13 @@ function ProjectCard({ project, index }: { project: Project; index: number }) {
             />
           </motion.div>
           <div className="absolute inset-0 bg-[linear-gradient(90deg,rgb(var(--color-page)/0.74),transparent_58%,rgb(var(--color-page)/0.25))]" />
+          <motion.div
+            aria-hidden="true"
+            className="absolute inset-x-0 top-0 h-px bg-gold/70"
+            initial={false}
+            animate={{ opacity: hovered ? 1 : 0, y: hovered ? "78vh" : 0 }}
+            transition={{ duration: 0.92, ease: easings.dolly }}
+          />
           <motion.div
             className="absolute bottom-8 left-6 right-6 flex flex-col gap-5 md:bottom-12 md:left-12 md:right-12"
             initial="rest"
@@ -164,6 +178,7 @@ export function WorkReel() {
 
   return (
     <section
+      id="work"
       ref={sectionRef}
       tabIndex={0}
       onKeyDown={handleKeyDown}
@@ -171,13 +186,18 @@ export function WorkReel() {
       aria-label="Selected work reel"
     >
       <div className="flex h-auto flex-col md:h-screen md:flex-row" ref={trackRef}>
-        <div className="flex min-w-[72vw] flex-col justify-between px-gutter py-14 md:h-screen md:py-12">
-          <div className="mono-meta text-gold">WORK / REEL</div>
+        <div className="relative flex min-w-[72vw] flex-col justify-between overflow-hidden px-gutter py-14 md:h-screen md:py-12">
+          <EchoMark
+            decorative
+            className="absolute -bottom-36 -left-28 h-[34rem] w-[34rem] text-gold/[0.045]"
+            strokeScale={0.72}
+          />
+          <div className="mono-meta relative z-10 text-gold">WORK / REEL</div>
           <div className="space-y-7">
-            <p className="max-w-lg font-display text-5xl leading-[0.96] text-ink md:text-7xl">
-              The frame is the interface.
+            <p className="relative z-10 max-w-lg font-display text-5xl leading-[0.96] text-ink md:text-7xl">
+              Selection, not gallery.
             </p>
-            <div className="grid max-w-xl grid-cols-3 border-y border-line/10 py-4 mono-meta text-muted">
+            <div className="relative z-10 grid max-w-xl grid-cols-3 border-y border-line/10 py-4 mono-meta text-muted">
               <span>05 SCENES</span>
               <span>SILENT LOOP</span>
               <span>AI NATIVE</span>

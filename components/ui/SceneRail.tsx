@@ -2,7 +2,7 @@
 
 import { motion, useScroll, useSpring, useTransform } from "framer-motion";
 
-const scenes = ["TITLE", "REEL", "CAP", "SILENCE", "CAST", "BADR", "CONTACT"];
+const scenes = ["TITLE", "SYSTEM", "REEL", "CAP", "SILENCE", "CAST", "BADR", "CONTACT"];
 
 export function SceneRail() {
   const { scrollYProgress } = useScroll();

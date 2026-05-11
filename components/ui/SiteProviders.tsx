@@ -2,6 +2,7 @@
 
 import { ReactNode } from "react";
 import { CustomCursor } from "./CustomCursor";
+import { DirectorChrome } from "./DirectorChrome";
 import { GrainOverlay } from "./GrainOverlay";
 import { Preloader } from "./Preloader";
 import { SceneRail } from "./SceneRail";
@@ -14,6 +15,7 @@ export function SiteProviders({ children }: { children: ReactNode }) {
     <>
       <Preloader />
       {children}
+      <DirectorChrome />
       <SceneRail />
       <GrainOverlay />
       <CustomCursor />

@@ -5,6 +5,7 @@ import { CurrentProduction } from "@/components/sections/CurrentProduction";
 import { Hero } from "@/components/sections/Hero";
 import { FrameMatrix } from "@/components/sections/FrameMatrix";
 import { Philosophy } from "@/components/sections/Philosophy";
+import { StudioApparatus } from "@/components/sections/StudioApparatus";
 import { TemporalThesis } from "@/components/sections/TemporalThesis";
 import { WorkReel } from "@/components/sections/WorkReel";
 
@@ -13,6 +14,7 @@ export default function Home() {
     <main>
       <Hero />
       <TemporalThesis />
+      <StudioApparatus />
       <WorkReel />
       <FrameMatrix />
       <Capabilities />

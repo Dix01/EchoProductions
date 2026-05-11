@@ -5,6 +5,7 @@ import { motion, useReducedMotion } from "framer-motion";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { easings } from "@/lib/animations/easing";
+import { LazyVideo } from "@/components/ui/LazyVideo";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -12,30 +13,55 @@ const capabilities = [
   {
     name: "VFX",
     text: "Impossible images, physically restrained.",
+    video: {
+      webm: "/assets/work/echo-ground-crack.webm",
+      mp4: "/assets/work/echo-ground-crack.mp4",
+      poster: "/assets/work/echo-ground-crack.webp"
+    },
     plate:
       "linear-gradient(135deg, rgba(9,13,24,0.95), rgba(0,0,0,0.98) 54%, rgba(201,169,97,0.1))"
   },
   {
     name: "Feature Films",
     text: "Long-form worlds with computational bones.",
+    video: {
+      webm: "/assets/production/battle-of-badr-hero.webm",
+      mp4: "/assets/production/battle-of-badr-hero.mp4",
+      poster: "/assets/production/battle-of-badr-hero.webp"
+    },
     plate:
       "linear-gradient(135deg, rgba(15,17,19,0.96), rgba(0,0,0,0.98) 52%, rgba(94,78,45,0.17))"
   },
   {
     name: "Short Films",
     text: "Compressed cinema with room to breathe.",
+    video: {
+      webm: "/assets/work/echo-dark-fantasy.webm",
+      mp4: "/assets/work/echo-dark-fantasy.mp4",
+      poster: "/assets/work/echo-dark-fantasy.webp"
+    },
     plate:
       "linear-gradient(135deg, rgba(7,12,17,0.96), rgba(0,0,0,0.98) 52%, rgba(84,90,96,0.18))"
   },
   {
     name: "Music Videos",
     text: "Rhythm treated as architecture.",
+    video: {
+      webm: "/assets/work/echo-street-spectacle.webm",
+      mp4: "/assets/work/echo-street-spectacle.mp4",
+      poster: "/assets/work/echo-street-spectacle.webp"
+    },
     plate:
       "linear-gradient(135deg, rgba(22,10,14,0.94), rgba(0,0,0,0.98) 50%, rgba(201,169,97,0.12))"
   },
   {
     name: "Commercials",
     text: "Product films without the noise.",
+    video: {
+      webm: "/assets/work/echo-interrogation.webm",
+      mp4: "/assets/work/echo-interrogation.mp4",
+      poster: "/assets/work/echo-interrogation.webp"
+    },
     plate:
       "linear-gradient(135deg, rgba(5,8,13,0.98), rgba(0,0,0,1) 58%, rgba(201,169,97,0.08))"
   }
@@ -84,10 +110,20 @@ export function Capabilities() {
             className="asset-plate absolute inset-0"
             style={{ background: capability.plate }}
             initial={false}
-            animate={{ opacity: active === index ? 0.48 : 0 }}
+            animate={{ opacity: active === index ? 1 : 0 }}
             transition={{ duration: 0.82, ease: easings.enter }}
             aria-hidden="true"
-          />
+          >
+            <LazyVideo
+              active={active === index}
+              webm={capability.video.webm}
+              mp4={capability.video.mp4}
+              poster={capability.video.poster}
+              label={`${capability.name} capability background loop`}
+              className="h-full w-full object-cover opacity-28"
+            />
+            <div className="absolute inset-0 bg-[radial-gradient(circle_at_70%_45%,rgb(var(--color-gold)/0.12),transparent_28%),linear-gradient(90deg,rgb(var(--color-page)/0.88),rgb(var(--color-page)/0.48)_52%,rgb(var(--color-page)/0.92))]" />
+          </motion.div>
         ))}
         <div className="relative z-10 grid w-full gap-10 lg:grid-cols-[1.1fr_0.9fr] lg:items-end">
           <div>

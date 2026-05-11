@@ -12,6 +12,7 @@ import {
 import { useEffect, useRef, useState } from "react";
 import { easings } from "@/lib/animations/easing";
 import { EchoLockup, EchoMark } from "@/components/ui/EchoIdentity";
+import { LazyVideo } from "@/components/ui/LazyVideo";
 
 const HeroShader = dynamic(() => import("./HeroShader"), { ssr: false });
 
@@ -103,6 +104,9 @@ export function Hero() {
     offset: ["start start", "end start"]
   });
   const phraseIndex = useTransform(scrollYProgress, [0, 0.28, 0.58, 0.86], [0, 1, 2, 2]);
+  const plateScale = useTransform(scrollYProgress, [0, 1], [1.06, 1.16]);
+  const plateY = useTransform(scrollYProgress, [0, 1], ["0%", "5%"]);
+  const markRotate = useTransform(scrollYProgress, [0, 1], [0, 28]);
 
   useMotionValueEvent(phraseIndex, "change", (latest) => {
     const next = phrases[Math.max(0, Math.min(2, Math.round(latest)))];
@@ -116,32 +120,65 @@ export function Hero() {
 
   return (
     <section
+      id="top"
       ref={sectionRef}
       className="relative min-h-[185vh] overflow-clip bg-page"
       aria-label="ECHO studio introduction"
     >
       <div className="sticky top-0 flex h-screen items-center overflow-hidden px-gutter">
+        <motion.div
+          aria-hidden="true"
+          className="absolute inset-0"
+          style={{ scale: plateScale, y: shouldReduce ? "0%" : plateY }}
+        >
+          <LazyVideo
+            active
+            webm="/assets/hero/echo-opening-gate.webm"
+            mp4="/assets/hero/echo-opening-gate.mp4"
+            poster="/assets/hero/echo-opening-gate.webp"
+            label="ECHO opening gate loop"
+            className="h-full w-full object-cover opacity-36"
+          />
+        </motion.div>
         <div className="absolute inset-0 opacity-80">
           {!shouldReduce && shaderReady ? <HeroShader /> : null}
         </div>
-        <div className="absolute inset-0 bg-[linear-gradient(180deg,rgb(var(--color-page)/0.35),rgb(var(--color-page)/0.95))]" />
-        <div
+        <div className="absolute inset-0 bg-[radial-gradient(circle_at_64%_38%,rgb(var(--color-gold)/0.16),transparent_30%),linear-gradient(90deg,rgb(var(--color-page)/0.94),rgb(var(--color-page)/0.34)_52%,rgb(var(--color-page)/0.9)),linear-gradient(180deg,rgb(var(--color-page)/0.45),rgb(var(--color-page)/0.98))]" />
+        <motion.div
           aria-hidden="true"
           className="absolute -right-[22vmin] bottom-[-24vmin] w-[88vmin] text-ink/[0.035] md:w-[104vmin]"
+          style={{ rotate: shouldReduce ? 0 : markRotate }}
         >
           <EchoMark decorative className="h-full w-full" strokeScale={0.72} />
-        </div>
-        <div className="absolute left-gutter top-5 z-10">
+        </motion.div>
+        <div className="absolute left-gutter top-20 z-10 md:top-24">
           <EchoLockup compact meta="EST. 2024 / CAIRO" />
         </div>
-        <div className="absolute right-gutter top-6 z-10 mono-meta text-muted">
+        <div className="absolute right-gutter top-20 z-10 hidden mono-meta text-muted sm:block md:top-24">
           {time} / EET
         </div>
-        <h1 className="display-massive relative z-10 w-full max-w-[13ch] text-ink">
+        <h1 className="display-massive relative z-10 w-full max-w-[12ch] text-ink drop-shadow-[0_22px_60px_rgb(0_0_0/0.62)]">
           <AnimatePresence mode="wait">
             <MaskedPhrase phrase={phrase} />
           </AnimatePresence>
         </h1>
+        <motion.div
+          className="absolute right-gutter top-1/2 z-10 hidden w-[min(25vw,22rem)] -translate-y-1/2 border-y border-line/10 py-6 lg:block"
+          initial={{ opacity: 0, x: shouldReduce ? 0 : 24 }}
+          animate={{ opacity: 1, x: 0 }}
+          transition={{ duration: 1, ease: easings.enter, delay: 1.24 }}
+        >
+          <div className="mb-7 flex items-center justify-between mono-meta text-gold">
+            <span>DIRECTED SYSTEM</span>
+            <span>0847F</span>
+          </div>
+          <div className="grid grid-cols-2 gap-x-8 gap-y-5 mono-meta text-muted">
+            <span>VFX</span>
+            <span>FEATURE</span>
+            <span>SACRED REALISM</span>
+            <span>AI PIPELINE</span>
+          </div>
+        </motion.div>
         <motion.div
           className="absolute bottom-8 left-gutter z-10 grid max-w-xl gap-4 font-mono text-[0.68rem] uppercase leading-relaxed tracking-[0.08em] text-muted md:grid-cols-[1fr_1fr]"
           initial={{ opacity: 0 }}

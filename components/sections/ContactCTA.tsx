@@ -3,7 +3,7 @@
 import { useState } from "react";
 import { AtSign, Mail, Send } from "lucide-react";
 import { AnimatedArrow } from "@/components/ui/AnimatedArrow";
-import { EchoLockup } from "@/components/ui/EchoIdentity";
+import { EchoLockup, EchoMark } from "@/components/ui/EchoIdentity";
 import { ViewTransitionLink } from "@/components/ui/ViewTransitionLink";
 
 export function ContactCTA() {
@@ -12,9 +12,15 @@ export function ContactCTA() {
 
   return (
     <section
-      className="bg-page px-gutter py-20 md:py-28"
+      id="contact"
+      className="relative overflow-hidden bg-page px-gutter py-20 md:py-28"
       aria-label="Contact ECHO"
     >
+      <EchoMark
+        decorative
+        className="absolute -right-28 top-8 h-[28rem] w-[28rem] text-gold/[0.055]"
+        strokeScale={0.72}
+      />
       <ViewTransitionLink
         href="/contact"
         data-cursor="talk"
@@ -22,7 +28,7 @@ export function ContactCTA() {
         onMouseLeave={() => setHovered(false)}
         onFocus={() => setHovered(true)}
         onBlur={() => setHovered(false)}
-        className="group grid min-h-[42vh] gap-8 border-y border-line/10 py-12 md:grid-cols-[1fr_auto] md:items-center"
+        className="group relative z-10 grid min-h-[48vh] gap-8 border-y border-line/10 py-12 md:grid-cols-[1fr_auto] md:items-center"
       >
         <span>
           <span className="mb-6 block mono-meta text-gold">FINAL FRAME / OPEN SIGNAL</span>

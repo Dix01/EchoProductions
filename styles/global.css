@@ -12,6 +12,9 @@
   --color-line: 255 255 255;
   --color-veil: 8 10 14;
   --gutter: clamp(1rem, 4vw, 4rem);
+  --mouse-x: 50vw;
+  --mouse-y: 50vh;
+  --current-frame: "0000";
 
   /* Entrance curve: expo-like arrival, used where scenes appear with cinematic weight. */
   --ease-enter: cubic-bezier(0.16, 1, 0.3, 1);
@@ -29,19 +32,26 @@ html {
   background: rgb(var(--color-page));
   scrollbar-color: rgb(var(--color-gold) / 0.55) rgb(var(--color-page));
   scrollbar-width: thin;
+  scroll-padding-top: 6rem;
 }
 
 body {
   margin: 0;
   min-height: 100vh;
   overflow-x: clip;
-  background: rgb(var(--color-page));
+  background:
+    radial-gradient(circle at 50% 0%, rgb(var(--color-navy) / 0.26), transparent 28rem),
+    rgb(var(--color-page));
   color: rgb(var(--color-ink));
   font-family: var(--font-body), Arial, sans-serif;
   font-feature-settings: "ss01" 1, "cv11" 1;
   line-height: 1.58;
   text-rendering: geometricPrecision;
   cursor: none;
+}
+
+[id] {
+  scroll-margin-top: 6rem;
 }
 
 ::selection {
