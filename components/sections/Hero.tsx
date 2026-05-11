@@ -11,6 +11,7 @@ import {
 } from "framer-motion";
 import { useEffect, useRef, useState } from "react";
 import { easings } from "@/lib/animations/easing";
+import { EchoLockup, EchoMark } from "@/components/ui/EchoIdentity";
 
 const HeroShader = dynamic(() => import("./HeroShader"), { ssr: false });
 
@@ -126,12 +127,12 @@ export function Hero() {
         <div className="absolute inset-0 bg-[linear-gradient(180deg,rgb(var(--color-page)/0.35),rgb(var(--color-page)/0.95))]" />
         <div
           aria-hidden="true"
-          className="absolute -right-[0.08em] bottom-[-0.2em] font-display text-[34vw] leading-none text-ink/[0.025]"
+          className="absolute -right-[22vmin] bottom-[-24vmin] w-[88vmin] text-ink/[0.035] md:w-[104vmin]"
         >
-          ECHO
+          <EchoMark decorative className="h-full w-full" strokeScale={0.72} />
         </div>
-        <div className="absolute left-gutter top-6 z-10 mono-meta text-muted">
-          ECHO / EST. 2024 / CAIRO
+        <div className="absolute left-gutter top-5 z-10">
+          <EchoLockup compact meta="EST. 2024 / CAIRO" />
         </div>
         <div className="absolute right-gutter top-6 z-10 mono-meta text-muted">
           {time} / EET

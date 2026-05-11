@@ -1,5 +1,6 @@
 import { notFound } from "next/navigation";
 import { getProject, projects } from "@/lib/data/projects";
+import { EchoLockup } from "@/components/ui/EchoIdentity";
 import { LazyVideo } from "@/components/ui/LazyVideo";
 
 export function generateStaticParams() {
@@ -15,8 +16,14 @@ export default function WorkPage({ params }: { params: { slug: string } }) {
 
   return (
     <main className="min-h-screen bg-page px-gutter py-16 md:py-20">
-      <a href="/" className="mono-meta text-gold" data-cursor="back">
-        ECHO / BACK
+      <a href="/" className="inline-flex text-gold" data-cursor="back" aria-label="Back to ECHO home">
+        <EchoLockup
+          compact
+          label="ECHO"
+          meta="BACK"
+          markClassName="text-gold"
+          wordmarkClassName="text-ink"
+        />
       </a>
       <article className="mt-16">
         <div className="mb-12 flex items-start justify-between gap-8">

@@ -1,0 +1,83 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<title>Echo — Identity System</title>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@200;300;400&family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300;1,400&family=JetBrains+Mono:wght@300;400&display=swap" rel="stylesheet" />
+<style>
+  html, body { margin: 0; padding: 0; background: #1a1816; color: #e9e6df; font-family: 'Archivo', system-ui, sans-serif; height: 100%; }
+  #app { width: 100vw; height: 100vh; }
+</style>
+</head>
+<body>
+<div id="app"></div>
+
+<script src="https://unpkg.com/react@18.3.1/umd/react.development.js" integrity="sha384-hD6/rw4ppMLGNu3tX5cjIb+uRZ7UkRJ6BPkLpg4hAu/6onKUg4lLsHAs9EBPT82L" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/react-dom@18.3.1/umd/react-dom.development.js" integrity="sha384-u6aeetuaXnQ38mYT8rp6sbXaQe3NL9t+IBXmnYxwkUI2Hw4bsp2Wvmx4yRQF1uAm" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/@babel/standalone@7.29.0/babel.min.js" integrity="sha384-m08KidiNqLdpJqLq95G/LEi8Qvjl/xUYll3QILypMoQ65QorJ9Lvtp2RXYGBFj1y" crossorigin="anonymous"></script>
+
+<script type="text/babel" src="design-canvas.jsx"></script>
+<script type="text/babel" src="echo-mark.jsx"></script>
+<script type="text/babel" src="artboards.jsx"></script>
+
+<script type="text/babel">
+const { DesignCanvas, DCSection, DCArtboard } = window;
+
+function App() {
+  return (
+    <DesignCanvas title="Echo — Identity System" subtitle="A.I. Creative Studio · Filmmaking · Music · VFX · Editorial">
+      <DCSection id="opening" title="Opening">
+        <DCArtboard id="cover" label="Cover · Vol. I" width={1100} height={780}>
+          <ArtboardCover />
+        </DCArtboard>
+        <DCArtboard id="manifesto" label="Manifesto" width={1100} height={780}>
+          <ArtboardManifesto />
+        </DCArtboard>
+      </DCSection>
+
+      <DCSection id="marks" title="Mark & Wordmark">
+        <DCArtboard id="markspec" label="Mark · Specification" width={1100} height={780}>
+          <ArtboardMarkSpec />
+        </DCArtboard>
+        <DCArtboard id="wordmark" label="Wordmark · Specimen + Construction" width={1100} height={780}>
+          <ArtboardWordmark />
+        </DCArtboard>
+        <DCArtboard id="lockups" label="Lockups" width={1100} height={780}>
+          <ArtboardLockups />
+        </DCArtboard>
+      </DCSection>
+
+      <DCSection id="treatments" title="Treatments & Motion">
+        <DCArtboard id="negfoil" label="Negative · Foil" width={1300} height={780}>
+          <ArtboardNegativeFoil />
+        </DCArtboard>
+        <DCArtboard id="title-seq" label="Title Sequence · Storyboard" width={1300} height={780}>
+          <ArtboardTitleSequence />
+        </DCArtboard>
+        <DCArtboard id="motion" label="Motion · Loop" width={1100} height={780}>
+          <ArtboardMotion />
+        </DCArtboard>
+      </DCSection>
+
+      <DCSection id="field" title="Applications & System">
+        <DCArtboard id="apps" label="Applications · Field" width={1300} height={780}>
+          <ArtboardApplications />
+        </DCArtboard>
+        <DCArtboard id="construction" label="Construction · Geometry" width={1100} height={780}>
+          <ArtboardConstruction />
+        </DCArtboard>
+        <DCArtboard id="spacing" label="Spacing & Scale" width={1300} height={780}>
+          <ArtboardSpacing />
+        </DCArtboard>
+      </DCSection>
+    </DesignCanvas>
+  );
+}
+
+ReactDOM.createRoot(document.getElementById('app')).render(<App />);
+</script>
+</body>
+</html>

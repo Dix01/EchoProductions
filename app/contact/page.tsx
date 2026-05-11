@@ -4,14 +4,21 @@ import { Mail } from "lucide-react";
 import { motion } from "framer-motion";
 import { easings } from "@/lib/animations/easing";
 import { AnimatedArrow } from "@/components/ui/AnimatedArrow";
+import { EchoLockup } from "@/components/ui/EchoIdentity";
 import { ViewTransitionLink } from "@/components/ui/ViewTransitionLink";
 
 export default function ContactPage() {
   return (
     <main className="grid min-h-screen bg-page px-gutter py-10">
       <div className="flex items-start justify-between">
-        <ViewTransitionLink href="/" className="mono-meta text-gold" data-cursor="back">
-          ECHO / HOME
+        <ViewTransitionLink href="/" className="text-gold" data-cursor="back">
+          <EchoLockup
+            compact
+            label="ECHO home"
+            meta="HOME"
+            markClassName="text-gold"
+            wordmarkClassName="text-ink"
+          />
         </ViewTransitionLink>
         <div className="mono-meta text-muted">CAIRO / CONVERSATION</div>
       </div>

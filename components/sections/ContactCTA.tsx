@@ -3,6 +3,7 @@
 import { useState } from "react";
 import { AtSign, Mail, Send } from "lucide-react";
 import { AnimatedArrow } from "@/components/ui/AnimatedArrow";
+import { EchoLockup } from "@/components/ui/EchoIdentity";
 import { ViewTransitionLink } from "@/components/ui/ViewTransitionLink";
 
 export function ContactCTA() {
@@ -32,7 +33,13 @@ export function ContactCTA() {
         <AnimatedArrow active={hovered} />
       </ViewTransitionLink>
       <footer className="mt-12 flex flex-col gap-8 mono-meta text-muted md:flex-row md:items-center md:justify-between">
-        <div>ECHO / {year} / CAIRO</div>
+        <EchoLockup
+          compact
+          meta={`${year} / CAIRO`}
+          className="text-ink"
+          markClassName="h-7 w-7 text-gold/80"
+          wordmarkClassName="h-3 text-muted"
+        />
         <div className="flex items-center gap-5">
           <a
             href="mailto:hello@echo.studio"

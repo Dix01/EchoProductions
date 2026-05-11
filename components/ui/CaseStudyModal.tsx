@@ -6,6 +6,7 @@ import { X } from "lucide-react";
 import { motion } from "framer-motion";
 import { easings } from "@/lib/animations/easing";
 import type { Project } from "@/lib/data/projects";
+import { EchoLockup } from "./EchoIdentity";
 import { LazyVideo } from "./LazyVideo";
 
 export function CaseStudyModal({ project }: { project: Project }) {
@@ -44,7 +45,12 @@ export function CaseStudyModal({ project }: { project: Project }) {
       </button>
       <article className="min-h-screen px-gutter py-16 md:py-20">
         <div className="mb-12 flex items-start justify-between gap-8">
-          <div className="mono-meta text-gold">CASE STUDY</div>
+          <EchoLockup
+            compact
+            meta="CASE STUDY"
+            markClassName="text-gold"
+            wordmarkClassName="text-ink"
+          />
           <div className="mono-meta text-muted">{project.year} / {project.ratio}</div>
         </div>
         <div className="grid gap-10 lg:grid-cols-[1.1fr_0.9fr] lg:items-end">
