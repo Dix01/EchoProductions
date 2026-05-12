@@ -116,6 +116,16 @@ svg {
   mask-size: contain;
 }
 
+.hero-scroll-mark {
+  color: rgb(var(--color-gold) / 0.18);
+  filter: drop-shadow(0 0 34px rgb(var(--color-gold) / 0.12));
+}
+
+[data-theme="light"] .hero-scroll-mark {
+  color: rgb(var(--color-ink) / 0.12);
+  filter: drop-shadow(0 0 28px rgb(var(--color-gold) / 0.16));
+}
+
 .spatial-light {
   mix-blend-mode: screen;
 }
@@ -144,6 +154,18 @@ svg {
   a,
   button {
     cursor: auto;
+  }
+}
+
+@media (min-width: 768px) {
+  .hero-scroll-mark {
+    color: rgb(var(--color-ink) / 0.055);
+    filter: drop-shadow(0 0 28px rgb(var(--color-gold) / 0.08));
+  }
+
+  [data-theme="light"] .hero-scroll-mark {
+    color: rgb(var(--color-ink) / 0.075);
+    filter: none;
   }
 }
 

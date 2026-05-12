@@ -146,7 +146,7 @@ export function Hero() {
         <div className="absolute inset-0 bg-[radial-gradient(circle_at_64%_38%,rgb(var(--color-gold)/0.16),transparent_30%),linear-gradient(90deg,rgb(var(--color-page)/0.94),rgb(var(--color-page)/0.34)_52%,rgb(var(--color-page)/0.9)),linear-gradient(180deg,rgb(var(--color-page)/0.45),rgb(var(--color-page)/0.98))]" />
         <motion.div
           aria-hidden="true"
-          className="absolute -right-[22vmin] bottom-[-24vmin] w-[88vmin] text-ink/[0.035] md:w-[104vmin]"
+          className="hero-scroll-mark absolute -right-[34vmin] bottom-[-18vmin] w-[126vmin] md:-right-[22vmin] md:bottom-[-24vmin] md:w-[104vmin]"
           style={{ rotate: shouldReduce ? 0 : markRotate }}
         >
           <EchoMark decorative className="h-full w-full" strokeScale={0.72} />
