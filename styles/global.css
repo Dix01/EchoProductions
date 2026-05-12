@@ -101,6 +101,21 @@ svg {
   vector-effect: non-scaling-stroke;
 }
 
+.echo-mark-mask {
+  display: block;
+  flex: 0 0 auto;
+  aspect-ratio: 1;
+  background-color: currentColor;
+  -webkit-mask-image: url("/assets/identity/echo-mark-mask-1024.png");
+  mask-image: url("/assets/identity/echo-mark-mask-1024.png");
+  -webkit-mask-position: center;
+  mask-position: center;
+  -webkit-mask-repeat: no-repeat;
+  mask-repeat: no-repeat;
+  -webkit-mask-size: contain;
+  mask-size: contain;
+}
+
 .spatial-light {
   mix-blend-mode: screen;
 }

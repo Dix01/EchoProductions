@@ -1,4 +1,4 @@
-import type { SVGProps } from "react";
+import type { HTMLAttributes, SVGProps } from "react";
 
 const PHI = (1 + Math.sqrt(5)) / 2;
 
@@ -78,7 +78,7 @@ function buildFibSpiral(start = 1.8) {
 
 const fibPath = buildFibSpiral();
 
-type EchoMarkProps = SVGProps<SVGSVGElement> & {
+type EchoMarkProps = HTMLAttributes<HTMLSpanElement> & {
   decorative?: boolean;
   echoes?: boolean;
   perfs?: boolean;
@@ -92,67 +92,25 @@ type EchoMarkProps = SVGProps<SVGSVGElement> & {
 export function EchoMark({
   className,
   decorative = false,
-  echoes = true,
-  perfs = true,
-  axis = true,
-  spiral = true,
-  crisp = false,
-  strokeScale = 1,
+  echoes: _echoes = true,
+  perfs: _perfs = true,
+  axis: _axis = true,
+  spiral: _spiral = true,
+  crisp: _crisp = false,
+  strokeScale: _strokeScale = 1,
   title = "ECHO aperture mark",
   ...props
 }: EchoMarkProps) {
   const a11y = decorative
     ? { "aria-hidden": true }
     : { role: "img", "aria-label": title };
-  const stroke = strokeScale;
-  const { cx, cy } = G;
 
   return (
-    <svg
-      viewBox="0 0 400 400"
-      className={joinClasses(crisp ? "identity-crisp-stroke" : undefined, className)}
-      fill="none"
-      focusable="false"
+    <span
+      className={joinClasses("echo-mark-mask", className)}
       {...a11y}
       {...props}
-    >
-      {echoes ? (
-        <g stroke="currentColor">
-          <circle cx={cx} cy={cy} r={G.rEcho1} strokeWidth={stroke * 0.85} opacity={0.95} />
-          <circle cx={cx} cy={cy} r={G.rEcho2} strokeWidth={stroke * 0.7} opacity={0.55} />
-          <circle cx={cx} cy={cy} r={G.rEcho3} strokeWidth={stroke * 0.55} opacity={0.3} />
-        </g>
-      ) : null}
-      {axis ? (
-        <g stroke="currentColor" strokeWidth={stroke * 0.8} strokeLinecap="round">
-          <line x1={cx - G.rEcho3 - G.axisExt} y1={cy} x2={cx - G.rBarrel - 5} y2={cy} />
-          <line x1={cx + G.rBarrel + 5} y1={cy} x2={cx + G.rEcho3 + G.axisExt} y2={cy} />
-        </g>
-      ) : null}
-      <circle cx={cx} cy={cy} r={G.rBarrel} stroke="currentColor" strokeWidth={stroke} />
-      <g stroke="currentColor" strokeWidth={stroke} strokeLinecap="round" strokeLinejoin="round">
-        {aperture.blades.map((d) => (
-          <path key={d} d={d} />
-        ))}
-      </g>
-      <polygon points={aperturePoints} stroke="currentColor" strokeWidth={stroke * 0.9} />
-      {spiral ? (
-        <path d={fibPath} stroke="currentColor" strokeWidth={stroke * 0.5} opacity={0.45} />
-      ) : null}
-      <circle cx={cx} cy={cy} r={G.rDot} fill="currentColor" />
-      {perfs ? (
-        <g fill="currentColor">
-          {[
-            [cx - G.perfW / 2, cy - G.rPerf - G.perfH / 2],
-            [cx - G.perfW / 2, cy + G.rPerf - G.perfH / 2],
-            [cx - G.rPerf - G.perfW / 2, cy - G.perfH / 2],
-            [cx + G.rPerf - G.perfW / 2, cy - G.perfH / 2]
-          ].map(([x, y], index) => (
-            <rect key={`${x}-${y}-${index}`} x={x} y={y} width={G.perfW} height={G.perfH} rx={0.8} />
-          ))}
-        </g>
-      ) : null}
-    </svg>
+    />
   );
 }
 

@@ -66,7 +66,12 @@ export function DirectorChrome() {
           data-cursor="top"
           className="inline-flex rounded-full border border-line/10 bg-page/62 px-3.5 py-2.5 shadow-[0_16px_45px_rgb(0_0_0/0.22)] backdrop-blur-xl transition-[border-color,background-color,opacity] duration-500 ease-enter hover:border-gold/40 hover:opacity-90"
         >
-          <EchoLockup compact meta="AI FILM STUDIO" />
+          <EchoLockup
+            compact
+            meta="AI FILM STUDIO"
+            markClassName="h-12 w-12 text-ink"
+            wordmarkClassName="h-5 text-ink"
+          />
         </a>
         <div className="hidden items-center gap-7 rounded-full border border-line/10 bg-page/35 px-5 py-3 backdrop-blur-md md:flex">
           {navItems.map((item) => (
